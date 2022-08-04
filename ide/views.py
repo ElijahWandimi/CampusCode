@@ -13,7 +13,7 @@ def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            question = Question.objects.all()
+            questions = Question.objects.all()
             stud_email = form.cleaned_data['email']
             stud_pass = form.cleaned_data['password']
             db_stud = Student.objects.filter(email=stud_email, password=stud_pass)
@@ -23,7 +23,7 @@ def login(request):
                 request.session['z'] = stud_email
                 request.session.get_expiry_age()
                 instance = get_object_or_404(Student, email=stud_email)
-                return render(request, 'ide/playground.html', {'question': question, 'student': Student.full_name, 'instance': instance})
+                return render(request, 'ide/questions.html', {'question': questions, 'student': db_stud, 'instance': instance})
     else:
         form = LoginForm()
         return render(request, 'ide/login.html', {'form': form})
@@ -35,7 +35,7 @@ def signup(request):
             instance = form.save(commit=False)
             instance.save()
             messages.success(request, 'Successfully added')
-            return redirect('/login')
+            return login(request)
     else:
         form = UserForm()
     return render(request, 'ide/signup.html', {'form': form})

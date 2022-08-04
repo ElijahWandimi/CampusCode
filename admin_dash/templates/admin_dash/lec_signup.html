@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'styles_s.css' %}"> -->
+    <title>Sign Up</title>
+</head>
+<body>
+    <!-- {% include 'ide/constant.html' %} -->
+    <center><h1>Lecturer</h1></center>
+    <div class="signup_form">
+        <form action="" method="POST">
+            <fieldset>
+                <legend>Sign Up</legend>
+                {% csrf_token %}
+                {{ form.as_p}}
+                <div id="pass-confirm">
+                    <input type="password" name="passconfirm" id="pass_confirm" value="" placeholder="Confirm password" required>
+                </div>
+                <div id="btnSubmit">
+                    <button type="submit">Sign up</button>
+                </div>
+                <div id="login_link">
+                    <li>Already have an account?<a href="{% url 'admin_dash:lec_login' %}">Log in</a></li>
+                </div>
+            </fieldset> 
+        </form>
+    </div>
+    <!-- {% include 'ide/footer.html' %} -->
+</body>
+</html>

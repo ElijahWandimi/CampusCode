@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{static 'ide/questions.css'}">
+    <title>Quiz</title>
+</head>
+<body>
+    {% include 'ide/constant.html' %}
+    <div class="questions">
+        {% block content %}
+        <div id="inner-q">
+            {% for question in question %}
+            <div class="q_s">
+                <div id="q_title">
+                    <a href="{% url 'ide:playground' %}"><h4>{{ question.question_name }}</h4></a>
+                </div>
+                <div id="description">
+                    <h5>{{ question.description}}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endblock %}
+    </div>
+    {% include 'ide/footer.html' %}
+</body>
+</html>

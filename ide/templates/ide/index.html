@@ -5,19 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'ide/home.css' %}">
     <title>Home</title>
 </head>
 <body>
-    <div id="nav-group">
-        {% include 'ide/constant.html' %}
-        <nav class="nav-bar">
-            <li>
-                <a href="{% url 'ide:login' %}">Log In</a>
-            </li>
-            <li>
-                <a href="{% url 'ide:signup' %}">Sign Up</a>
-            </li>
-        </nav>
+    <nav class="navbar">
+        <a class="right" href="#">CampusCode</a>
+        <a href="{% url 'ide:signup' %}">Signup</a>
+        <div class="dropdown">
+            <button class="dropbtn">Login</button>
+            <div class="dropdown-content">
+                <a href="{% url 'ide:login' %}"><i class="fa fa-fw fa-user"></i> Student</a>
+                <a href="{% url 'admin_dash:lec_login' %}"><i class="fa fa-fw fa-user"></i> Lecturer</a>
+            </div>
+        </div>
+    </nav>
+    <div class="info">
+        <div class="info-title">
+            <center>
+                <h2>The online ide for students</h2>
+            </center>  
+        </div>
     </div>
+    {% include 'ide/footer.html' %}
 </body>
 </html>
